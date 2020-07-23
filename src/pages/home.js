@@ -29,6 +29,9 @@ function HomeScreen({navigation}){
                   itemId: 86,
                   otherParam: 'anything you want here',
                 });
+                navigation.setOptions({
+                  title: 'UpdatedName'
+                })
               }}
             />
           </View>

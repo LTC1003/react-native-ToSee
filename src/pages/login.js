@@ -5,43 +5,22 @@ import { View, Text, Button, StyleSheet,
 // import {StackActions, NavigationActions} from 'react-navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HttpServer from '../serverModule/server';
-import { HTTP, URL, BaseUrl } from '../serverModule/api';
-import MD5 from 'js-md5';
+// import MD5 from 'js-md5';
+import $_Api from '../serverModule/api';
 
 function LoginScreen({ route, navigation }) {
   /* 2. Get the param */
-  const { otherParam } = route.params;
-  const { itemId } = route.params;
+  // const { otherParam } = route.params;
+  // const { itemId } = route.params;
   const signTips = () => {
     let textName = "密码登录"
     return textName;
   };
-  
-  // const reqData = "17359453234";
-  // const reqParams = addCode(reqData);
-  // const requstOption={
-  //   //请求方式
-  //   method: 'POST',
-  //   //请求头
-  //   headers:{
-  //     'Accept': 'application/json',
-  //     //取决于服务器端，所以请和服务器端的开发人员沟通确定清楚
-  //     'Content-Type': 'application/json',  
-  //     appVersion : reqParams.appVersion,
-  //     timeStamp : reqParams.timeStamp,
-  //     userAgent : reqParams.userAgent,
-  //     sign : reqParams.sign,
-  //   },
-  //   //请求体(GET方式无需设置)
-  //   body: JSON.stringify({
-  //     phone_number: 17345384734
-  //   }),
-    
-  // };
-  
+  const rePrarms = {
+    phoneValue: '',
+    PhoneVerify: '',
+  };
   const _doFetchLogin = function(){
-    console.log(HTTP, URL, 4567);
     // fetch('http://10.12.88.215:8080/api/code/login/send_code', requstOption)
     // .then(res => {
     //   return res.text();
@@ -49,9 +28,11 @@ function LoginScreen({ route, navigation }) {
     //   console.log(202,resText);
     // })
     // .catch(err => console.log(err));
+    console.log(this, 32444)
+    $_Api.userInfo.getSendCode({phone_number: 13022532993}).then((res) => {
+      console.log(res, 'hahu,404');
+    })
   }
-
-
 
   return (
     
@@ -62,7 +43,8 @@ function LoginScreen({ route, navigation }) {
           </View>
           <View>
             <TextInput placeholder="请输入手机号" 
-              style={styles.textInput} />
+              style={styles.textInput} 
+            />
             <View style={{position:"relative"}}>
               <TextInput placeholder="请输入验证码" style={styles.textInput} />
               <View style={{position:"absolute", right: 15, top: 4}}>

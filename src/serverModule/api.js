@@ -1,6 +1,6 @@
 
-// import * as userInfo from './userInfo';
+import * as userInfo from './userInfo';
 
-// export default {
-//   userInfo
-// };
+export default {
+  userInfo
+};
