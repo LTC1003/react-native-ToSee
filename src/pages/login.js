@@ -33,7 +33,37 @@ function LoginScreen({ route, navigation }) {
       console.log(res, 'hahu,404');
     })
   }
-
+  class Myinput extends React.Component {
+    constructor(props){
+      super(props);
+      this._onChangeText = this._onChangeText.bind(this);
+      this.state = {
+        showValue:"",
+      }
+    }
+    _onChangeText(inputData){
+      console.log("输入的内容",inputData);
+      //把获取到的内容，设置给showValue
+      this.setState({showValue:inputData});
+    }
+    showData(){
+      alert(this.state.showValue);//展示输入框的内容
+    }
+    render() {
+      return (
+        <View>
+          <TextInput 
+            style={styles.textInput}
+            placeholder="请输入手机号" 
+            clearButtonMode='while-editing'
+            defaultValue= ''
+            onChangeText={(text) => ({text})}
+            value={(value) => ({value})} 
+          />
+        </View>
+      )
+    }
+  }
   return (
     
     <SafeAreaView style={styles.container}>
@@ -42,16 +72,18 @@ function LoginScreen({ route, navigation }) {
             <Text style={styles.TextTitle}>登录ToSee</Text>
           </View>
           <View>
-            <TextInput placeholder="请输入手机号" 
-              style={styles.textInput} 
-            />
+            <Myinput />
             <View style={{position:"relative"}}>
-              <TextInput placeholder="请输入验证码" style={styles.textInput} />
-              <View style={{position:"absolute", right: 15, top: 4}}>
+              <TextInput placeholder="请输入验证码" 
+              style={styles.textInput} />
+              <TouchableHighlight style={{position:"absolute", right: 15, top: 4}}
+                onPress={() => {
+                  console.log(rePrarms.phoneValue, 499)
+                }}>
                 <Text style={{backgroundColor: "#6ea1f3", paddingVertical: 5}}>
                   获取验证码
                 </Text>
-              </View> 
+              </TouchableHighlight> 
             </View>
             <TouchableHighlight 
               style={styles.submitBtn} 
